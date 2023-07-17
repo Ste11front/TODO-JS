@@ -1,38 +1,12 @@
-// // console.log(DataServices.getData());
-// // const todos= StorageService.loadTodos();
-// // let manager;
-// // // if (todos) {
-// // //     manager = new Manager(todos);
-// // // } else {
-// // //     manager = new Manager();
-// // // }
-// const testArrayStandard = new MyArray([1,2,3])
-
-// const testArrayArgs = MyArray.fromArgs(1,2,3);
-
-// const obj = {name: 'stefania', age: 27, gender:'female'};
-
-// const testArrayObject = MyArray.fromObject(obj);
-
-// console.log(testArrayStandard);
-// console.log(testArrayArgs);
-// console.log(testArrayObject);
 
 
-// const array = [1,2,3];
-
-// const array2 = Array.from(obj);
-
-// console.log(array2);
-
-// // console.log(testArray)
-
-let manager = new Manager();
+let manager;
 
 DBService.getAllTodos().then(todos => {
     manager = new Manager(todos);
     render();
 })
+
 
 function render(){
     
@@ -80,9 +54,15 @@ function render(){
         const deleteBtn = document.createElement('button');
         const deleteNode = document.createTextNode('cancella');
         deleteBtn.addEventListener('click', () => {
-            manager.deleteTodo(i);
+
+            DBService.deleteTodo(todo.id).then(() => {
+                manager.deleteTodo(i);
+                render();
+            });
+            
+            
             // StorageService.saveData(manager.todoArray);
-            render();
+            
         });
         // completeBtn.addEventListener('mouseover', () => div.style.borderWidth = '3px');
         // completeBtn.addEventListener('mouseleave', () => div.style.borderWidth = '1px');
@@ -107,7 +87,7 @@ function render(){
     }
 }
 
-render();
+// render();
 
 // function render2(){
 
@@ -183,4 +163,9 @@ function addTodo(){
     //     document.getElementById('add-todo-input').value = '';
     // }
     // render();
+}
+
+
+function changeHeader(){
+    document.querySelector('h1').innerHTML='lo sapevo che non avresti resistito!!!'
 }
