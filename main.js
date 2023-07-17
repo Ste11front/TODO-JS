@@ -1,35 +1,38 @@
-// console.log(DataServices.getData());
-// const todos= StorageService.loadTodos();
-// let manager;
-// // if (todos) {
-// //     manager = new Manager(todos);
-// // } else {
-// //     manager = new Manager();
-// // }
-const testArrayStandard = new MyArray([1,2,3])
+// // console.log(DataServices.getData());
+// // const todos= StorageService.loadTodos();
+// // let manager;
+// // // if (todos) {
+// // //     manager = new Manager(todos);
+// // // } else {
+// // //     manager = new Manager();
+// // // }
+// const testArrayStandard = new MyArray([1,2,3])
 
-const testArrayArgs = MyArray.fromArgs(1,2,3);
+// const testArrayArgs = MyArray.fromArgs(1,2,3);
 
-const obj = {name: 'stefania', age: 27, gender:'female'};
+// const obj = {name: 'stefania', age: 27, gender:'female'};
 
-const testArrayObject = MyArray.fromObject(obj);
+// const testArrayObject = MyArray.fromObject(obj);
 
-console.log(testArrayStandard);
-console.log(testArrayArgs);
-console.log(testArrayObject);
+// console.log(testArrayStandard);
+// console.log(testArrayArgs);
+// console.log(testArrayObject);
 
 
-const array = [1,2,3];
+// const array = [1,2,3];
 
-const array2 = Array.from(obj);
+// const array2 = Array.from(obj);
 
-console.log(array2);
+// console.log(array2);
 
-// console.log(testArray)
+// // console.log(testArray)
 
 let manager = new Manager();
 
-console.log(document);
+DBService.getAllTodos().then(todos => {
+    manager = new Manager(todos);
+    render();
+})
 
 function render(){
     
